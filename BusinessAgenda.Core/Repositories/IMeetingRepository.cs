@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BusinessAgenda.Core.Entites;
+﻿using BusinessAgenda.Core.Entities;
 
 namespace BusinessAgenda.Core.Repositories
 {
@@ -17,6 +12,7 @@ namespace BusinessAgenda.Core.Repositories
             Task Update(Meeting meeting);
             Task AddComment();
             Task<bool> Exists(int id);
+            Task<bool> HasScheduleConflictAsync(int managerId, DateTime start, DateTime end, CancellationToken cancellationToken);
     }
 
 }

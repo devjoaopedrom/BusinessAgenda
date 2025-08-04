@@ -42,7 +42,7 @@ namespace BusinessAgenda.API.Controllers
         }
         // POST api/Meeting
         [HttpPost]
-        public async Task<IActionResult> Post(CreatedMeetingCommand command)
+        public async Task<IActionResult> Post(CreateMeetingCommand command)
         {
             var result = await _mediator.Send(command);
 

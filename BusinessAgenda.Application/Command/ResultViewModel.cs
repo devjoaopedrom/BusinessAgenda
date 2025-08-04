@@ -1,4 +1,4 @@
-﻿namespace BusinessAgenda.Application.Comnmand
+﻿namespace BusinessAgenda.Application.Command
 {
     public class ResultViewModel
     {

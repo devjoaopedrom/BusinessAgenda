@@ -1,4 +1,5 @@
 ﻿using BusinessAgenda.Core.Repositories;
+using BusinessAgenda.Infrastructure.Persistence;
 using BusinessAgenda.Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -27,6 +28,7 @@ namespace BusinessAgenda.Infrastructure
         private static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services.AddScoped<IMeetingRepository, MeetingRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             return services;
         }

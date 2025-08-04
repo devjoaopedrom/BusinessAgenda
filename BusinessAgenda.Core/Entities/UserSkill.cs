@@ -1,4 +1,4 @@
-﻿namespace BusinessAgenda.Core.Entites
+﻿namespace BusinessAgenda.Core.Entities
 {
     public class UserSkill : BaseEntity
     {

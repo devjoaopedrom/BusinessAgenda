@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessAgenda.Core.Entites
+namespace BusinessAgenda.Core.Entities
 {
     public abstract  class BaseEntity
     {

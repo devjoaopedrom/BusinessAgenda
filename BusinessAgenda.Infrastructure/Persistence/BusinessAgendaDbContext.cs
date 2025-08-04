@@ -1,7 +1,8 @@
-﻿using BusinessAgenda.Core.Entites;
+﻿using System.Reflection.Emit;
+using BusinessAgenda.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace BusinessAgenda.Infrastructure.Persistence.Repositories
+namespace BusinessAgenda.Infrastructure.Persistence
 {
     public class BusinessAgendaDbContext : DbContext
     {
@@ -78,6 +79,16 @@ namespace BusinessAgenda.Infrastructure.Persistence.Repositories
               });
 
             base.OnModelCreating(builder);
+
+            builder
+                .Entity<MeetingComment>(e =>
+            {
+                e.HasKey(mc => mc.Id);
+
+                e.HasOne(mc => mc.Meeting)
+                    .WithMany(m => m.Comments)
+                    .HasForeignKey(mc => mc.MeetingId);
+            });
         }
     }
 }

@@ -1,5 +1,6 @@
-﻿using BusinessAgenda.Core.Entites;
+﻿using BusinessAgenda.Core.Entities;
 using BusinessAgenda.Core.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace BusinessAgenda.Infrastructure.Persistence.Repositories
 {
@@ -34,9 +35,10 @@ namespace BusinessAgenda.Infrastructure.Persistence.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Meeting> GetById(int id)
+        public async Task<Meeting> GetById(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Meetings
+                .SingleOrDefaultAsync(p => p.Id == id);
         }
 
         public Task<Meeting?> GetDetailsById(int id)
@@ -44,9 +46,20 @@ namespace BusinessAgenda.Infrastructure.Persistence.Repositories
             throw new NotImplementedException();
         }
 
-        public Task Update(Meeting meeting)
+        public async Task<bool> HasScheduleConflictAsync(int managerId, DateTime start, DateTime end, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _context.Meetings.AnyAsync(m =>
+                m.ManagerId == managerId &&
+                 m.Status == Core.Entites.Enums.MeetingStatusEnum.Occupied &&
+                 m.StartTime < end &&
+                 m.EndTime > start,
+                 cancellationToken);
+        }
+
+        public async Task Update(Meeting meeting)
+        {
+            _context.Meetings.Update(meeting);
+            await _context.SaveChangesAsync();
         }
     }
 }

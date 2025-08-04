@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessAgenda.Core.Entites
+namespace BusinessAgenda.Core.Entities
 {
     public class Agenda : BaseEntity
     {
@@ -18,6 +18,9 @@ namespace BusinessAgenda.Core.Entites
             Meetings = meetings;
             Year = year;  
         }
+
+        // Construtor sem parâmetros (usado pelo EF)
+        protected Agenda() { }
 
         public User User { get; set; }
         public int UserId { get; set; }
